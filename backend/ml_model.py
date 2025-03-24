@@ -50,18 +50,22 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 # Train model
 model = LinearRegression()
 model.fit(X_train, y_train)
+# def train_model():
+#     if df.empty:
+#         print("🚨 No data available for ML training!")
+#         return "No Data"  # Return this instead of None
+
+#     future_date = [[datetime.now().toordinal() + 30]]  # Correct input format
+#     avg_expense = np.mean(df["amount"])  # Use average expense if model fails
+
+#     try:
+#         prediction = model.predict([[future_date]])[0]  # Predict expense
+#         return round(max(prediction, avg_expense), 2)  # Ensure valid prediction
+#     except Exception as e:
+#         print("🚨 ML Model Error:", e)
+#         return round(avg_expense, 2)  # Use average expense if prediction fails
+
 def train_model():
-    if df.empty:
-        print("🚨 No data available for ML training!")
-        return "No Data"  # Return this instead of None
-
-    future_date = datetime.now().toordinal() + 30  # Predict for next month
-    avg_expense = np.mean(df["amount"])  # Use average expense if model fails
-
-    try:
-        prediction = model.predict([[future_date]])[0]  # Predict expense
-        return round(max(prediction, avg_expense), 2)  # Ensure valid prediction
-    except Exception as e:
-        print("🚨 ML Model Error:", e)
-        return round(avg_expense, 2)  # Use average expense if prediction fails
-
+    future_date = np.array([[datetime.now().toordinal() + 30]])  # Convert to 2D array
+    prediction = model.predict(future_date).item()
+    return round(prediction, 2)

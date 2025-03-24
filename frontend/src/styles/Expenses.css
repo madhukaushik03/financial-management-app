@@ -1,0 +1,21 @@
+.expenses-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  table {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+  }
+  
+  .chart-container {
+    width: 80%;
+    margin: auto;
+  }
+  
